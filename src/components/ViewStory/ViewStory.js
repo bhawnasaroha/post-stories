@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 
-class ViewStory extends Component {
-    constructor(props) {
-        super(props);
-    }
+class ViewStory extends Component {    
     render() {
         let props = this.props;
         return (
