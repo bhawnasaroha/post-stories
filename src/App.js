@@ -46,7 +46,7 @@ class App extends Component {
         <hr />
         {this.state.persons.map( person => {
           return(
-            <ViewStory 
+            <ViewStory             
             key={person.id}
             name={person.name}
             content={person.content}

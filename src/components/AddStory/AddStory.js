@@ -26,6 +26,7 @@ class AddStory extends Component {
     render() {
         return (
             <div>
+                <h2>Post your story</h2>
                 <form>
                     Name: <input onChange={this.handleChange} /><br /><br />
                     Content: <input onChange={this.handleChange} /><br /><br />
