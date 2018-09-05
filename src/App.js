@@ -39,6 +39,19 @@ class App extends React.Component {
     // const data = axios.get('/data/db.json');
     //console.log(data);
   }
+  handleChange(event) {
+    let target = event.target,
+    value = target.value,
+    name = target.name;    
+    this.setState({
+        persons: [
+            {
+                [name]: value                    
+            }
+        ]
+    });
+    console.log(this.state.persons);
+}
   handleSubmit(event, data) {
     event.preventDefault();    
     this.setState({
@@ -48,7 +61,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <AddStory click={this.handleSubmit} />
+        <AddStory handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
         <hr />
         {this.state.persons.map(person => {
           return (
