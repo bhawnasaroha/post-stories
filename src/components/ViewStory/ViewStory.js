@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class ViewStory extends Component {    
+class ViewStory extends React.Component {    
     render() {
         let props = this.props;
         return (
