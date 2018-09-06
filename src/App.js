@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import './App.css';
 import ViewStory from './components/ViewStory/ViewStory';
 import AddStory from './components/AddStory/AddStory';
@@ -10,12 +10,12 @@ class App extends React.Component {
     this.state = {
       persons: [
         {
-          id: 2,
+          id: 1,
           name: 'John',
           content: 'this is the story content',
           likes: 12
         }, {
-          id: 4,
+          id: 2,
           name: 'Smith',
           content: 'this is the story content',
           likes: 14
@@ -23,45 +23,47 @@ class App extends React.Component {
       ]
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
-  componentDitMount() {
-    // const ax = axios.create({
-    //   baseURL: 'http://localhost:3000/data'
-    // })
-    axios.get('http://localhost:3000/data/db.json')
-      .then(res => {
-        //console.log(res.data);
-        const persons = res.data;
-        this.setState({
-          persons: persons
-        });
-      });
-    // const data = axios.get('/data/db.json');
-    //console.log(data);
-  }
+
   handleChange(event) {
     let target = event.target,
-    value = target.value,
-    name = target.name;    
+      value = target.value,
+      name = target.name;
     this.setState({
-        persons: [
-            {
-                [name]: value                    
-            }
-        ]
-    });
-    console.log(this.state.persons);
-}
-  handleSubmit(event, data) {
-    event.preventDefault();    
-    this.setState({
-      persons: this.state.persons.concat([{data}])
+      [name]: value
     });
   }
+  handleSubmit(event) {
+    event.preventDefault();
+    let length = this.state.persons.length,
+      persons = this.state.persons,
+      id = persons[length - 1].id + 1;
+    this.setState(data => ({
+      persons: [...this.state.persons, data]
+    })
+    );
+    console.log(this.state.persons);
+  }
+  // increaseLikes(key) {
+  //   // let likes = this.state.persons.likes;
+  //   this.setState({
+  //     persons: [
+  //       likes: likes++
+  //     ]
+  //   });
+  // }
+  // decreaseLikes() {
+  //   let likes = this.state.persons.likes;
+  //   likes = likes--;
+  // }
   render() {
     return (
       <div className="App">
-        <AddStory handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
+        <AddStory
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+        />
         <hr />
         {this.state.persons.map(person => {
           return (
@@ -78,3 +80,18 @@ class App extends React.Component {
 }
 
 export default App;
+//componentDidMount() {
+  //   // const ax = axios.create({
+  //   //   baseURL: 'http://localhost:3000/data'
+  //   // })
+  //   axios.get('http://localhost:3000/data/db.json')
+  //     .then(res => {
+  //       console.log(res.data);
+  //       const persons = res.data;
+  //       this.setState({
+  //         persons: persons
+  //       });
+  //     });
+  //   const data = axios.get('/data/db.json');
+  //   console.log(data);
+  // }

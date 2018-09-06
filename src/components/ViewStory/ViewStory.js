@@ -1,13 +1,16 @@
 import React from 'react';
 
-class ViewStory extends React.Component {    
+class ViewStory extends React.Component {
     render() {
-        let props = this.props;
+        let props = this.props,
+            likes = props.likes;
         return (
-            <div className="viewComp">                
+            <div className="viewComp">
                 <h4><span>Posted By: </span>{props.name}</h4>
                 <p>{props.content}</p>
-                <p>Number of likes: {props.likes}</p>
+                {/* <button className="likes-counter" >+</button> */}
+                <span className="text-right">{(likes) ? `Likes: ${likes}` : ''}</span>
+                {/* <button className="likes-counter" >-</button> */}
             </div>
         );
     }

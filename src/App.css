@@ -2,12 +2,16 @@
   text-align: center;
 }
 
-.viewComp {  
-  box-shadow: 0 0 9px #aaa;
-  background-color: #eee;
+.viewComp {
+  box-shadow: 1px 1px 8px #333;
+  background-color: #d6d6d6;
   margin: 20px auto;
-  max-width: 52%;
+  max-width: 768px;
   padding: 20px;
   border-radius: 10px;
-  border: 1px solid;
+  text-align: left;
+}
+
+.text-right {
+  float: right;
 }
