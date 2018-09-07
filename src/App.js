@@ -8,6 +8,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      
       persons: [
         {
           id: 1,
@@ -37,16 +38,19 @@ class App extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     let length = this.state.persons.length,
-      persons = this.state.persons,
+      persons = [...this.state.persons],
       id = persons[length - 1].id + 1;
-    this.setState(data => ({
-      persons: [...this.state.persons, data]
-    })
-    );
+      persons.push({
+        id:id,
+        name:this.state.name,
+        content:this.state.content,
+        likes:12
+      });
+    this.setState({persons:persons});
     console.log(this.state.persons);
   }
   // increaseLikes(key) {
-  //   // let likes = this.state.persons.likes;
+  //   let likes = this.state.persons.likes;
   //   this.setState({
   //     persons: [
   //       likes: likes++
