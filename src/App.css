@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.text-primary {
+  color: #11caca;
+}
+
 .viewComp {
   box-shadow: 1px 1px 8px #333;
   background-color: #d6d6d6;
@@ -12,6 +16,62 @@
   text-align: left;
 }
 
-.text-right {
-  float: right;
+input,
+textarea {
+  width: 440px;
+  padding: 4px 5px;
+  font-size: 15px;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+input {
+  height: 24px;
+}
+
+textarea {
+  height: 100px;
+}
+
+.likes-counter {
+  font-size: 20px;
+  background: transparent;
+  border: none;
+}
+
+.like {
+  color: #11caca;
+}
+
+.dislike {
+  color: coral;
+}
+
+.likes-counter:focus,
+.likes-counter svg:focus {
+  outline: none;
+}
+
+.submit-button {
+  padding: 4px 17px;
+  font-size: 16px;
+  text-transform: uppercase;
+  background: #f49573;
+  color: #eee;
+  border-radius: 1px;
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, .75);
+  border: none;
+  cursor: pointer;
+  transition: background .3s ease-in-out;
+}
+
+.submit-button:hover {
+  background: #11caca;  
+}
+
+.submit-button:focus {
+  outline: none;
 }
