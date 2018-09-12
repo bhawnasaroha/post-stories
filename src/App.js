@@ -13,19 +13,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      persons: [
-        {
-          id: 1,
-          name: 'John',
-          content: 'this is the story content',
-          likes: 12
-        }, {
-          id: 2,
-          name: 'Smith',
-          content: 'this is the story content',
-          likes: 14
-        }
-      ]
+      persons: []
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -66,7 +54,7 @@ class App extends React.Component {
     let persons = [...this.state.persons];
     let users = this.state.persons;
     let person = _.find(users, function (person) {
-      if(person.id === uId) {
+      if (person.id === uId) {
         return person;
       }
     });
@@ -88,7 +76,7 @@ class App extends React.Component {
     let persons = [...this.state.persons];
     let users = this.state.persons;
     let person = _.find(users, function (person) {
-      if(person.id === uId) {
+      if (person.id === uId) {
         return person;
       }
     });
@@ -116,7 +104,14 @@ class App extends React.Component {
           persons: persons
         });
       });    
-    console.log(this.state.persons);
+    axios({
+      method: 'post',
+      url: 'http://127.0.0.1:4000/',
+      data: this.state.persons,
+      header: {
+        'Accept': 'application/json'        
+      },
+    });
   }
 
   // render starts
