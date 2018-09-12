@@ -22,8 +22,7 @@ const http = require('http');
     //   console.log(data);
     // });
     let db = JSON.parse(rawdata);
-    console.log(db);
-    // let data = this.props.state;
+    console.log(db);    
     // rawdata = fs.writeFileSync('db.json', data);
     // db=JSON.parse(rawdata);
 

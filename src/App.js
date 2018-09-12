@@ -49,8 +49,7 @@ class App extends React.Component {
 
   // increase likes method
   increaseLikes(id) {
-    let uId = id;
-    console.log(id);
+    let uId = id;    
     let persons = [...this.state.persons];
     let users = this.state.persons;
     let person = _.find(users, function (person) {
@@ -62,17 +61,17 @@ class App extends React.Component {
       id: person.id,
       name: person.name,
       content: person.content,
-      likes: person.likes++
+      likes: person.likes+1
     };
     persons.push(newPerson);
     persons.pop(person);
     this.setState({ persons: persons });
+    console.log(id);
   }
 
   // decrease likes method
   decreaseLikes(id) {
-    let uId = id;
-    console.log(id);
+    let uId = id;    
     let persons = [...this.state.persons];
     let users = this.state.persons;
     let person = _.find(users, function (person) {
@@ -84,11 +83,12 @@ class App extends React.Component {
       id: person.id,
       name: person.name,
       content: person.content,
-      likes: (person.likes > 0 ? person.likes-- : person.likes)
+      likes: (person.likes > 0 ? person.likes-1 : person.likes)
     };
     persons.push(newPerson);
     persons.pop(person);
     this.setState({ persons: persons });
+    console.log(id);
   }
 
   // to get json data 
@@ -97,21 +97,23 @@ class App extends React.Component {
       baseURL: 'http://127.0.0.1:4000/'
     });
     ax.get('http://127.0.0.1:4000/')
-      .then(res => {
+      .then((res) => {
         console.log(res.data);
         const persons = res.data;
         this.setState({
           persons: persons
         });
+      },(err)=>{
+        console.log(err);
       });    
-    axios({
-      method: 'post',
-      url: 'http://127.0.0.1:4000/',
-      data: this.state.persons,
-      header: {
-        'Accept': 'application/json'        
-      },
-    });
+    // axios({
+    //   method: 'post',
+    //   url: 'http://127.0.0.1:4000/',
+    //   data: this.state.persons,
+    //   header: {
+    //     'Accept': 'application/json'        
+    //   },
+    // });
   }
 
   // render starts
