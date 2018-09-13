@@ -7,10 +7,8 @@ const http = require('http');
 
     const server = http.createServer((req, res) => {
       res.statusCode = 200;
-      res.setHeader({
-        'Content-Type': 'application/json', 
-        'Access-Control-Allow-Origin': '*'
-      });
+      res.setHeader('Content-Type', 'application/json', 'Access-Control-Allow-Origin: *');
+      res.setHeader('Access-Control-Allow-Origin', '*');
       res.end(fs.readFileSync('db.json'));
       // res.end(fs.readFile('db.json', (err, data) => {
       //   if (err) throw err;        

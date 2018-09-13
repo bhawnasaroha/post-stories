@@ -50,29 +50,21 @@ class App extends React.Component {
   // increase likes method
   increaseLikes(id) {
     let uId = id;
-    // let likes = 0;
     let persons = [...this.state.persons];
-    // let users = this.state.persons;
     let person = _.find(persons, function (person) {
       if (person.id === uId) {
         // likes = person.likes + 1;
-        return {
-          ...person
-        };
+        return person;
       }
     });
-    // console.log(person.likes);
-    // console.log(`APP STATE ${JSON.stringify(this.state.persons)}`);
-    // console.log(`PERSON OBJECT ${JSON.stringify(person)}`);
     let newPerson = {
       id: person.id,
       name: person.name,
       content: person.content,
-      likes: person.likes++
+      likes: person.likes + 1
     };
-    console.log(person.likes);
-    persons.push(newPerson);
-    persons.pop(person);
+    persons.splice(person.id - 1, 1);
+    persons.splice(newPerson.id - 1, 0, newPerson);
     this.setState({ persons: persons });
     console.log(id);
   }
@@ -92,10 +84,10 @@ class App extends React.Component {
       id: person.id,
       name: person.name,
       content: person.content,
-      likes: (person.likes > 0 ? (person.likes + 1) : person.likes)
+      likes: (person.likes > 0 ? person.likes - 1 : person.likes)
     };
-    persons.push(newPerson);
-    persons.pop(person);
+    persons.splice(person.id - 1, 1);
+    persons.splice(newPerson.id - 1, 0, newPerson);
     this.setState({ persons: persons });
     console.log(id);
   }
@@ -115,15 +107,15 @@ class App extends React.Component {
       }, err => {
         console.log(err);
       });
-    axios({
-      method: 'post',
-      url: 'http://127.0.0.1:4000/',
-      data: this.state.persons,
-      header: {
-        'Accept': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      },
-    });
+    // axios({
+    //   method: 'post',
+    //   url: 'http://127.0.0.1:4000/',
+    //   data: this.state.persons,
+    //   header: {
+    //     'Accept': 'application/json',
+    //     'Access-Control-Allow-Origin': '*'
+    //   },
+    // });
     // axios.post('http://127.0.0.1:4000/', {
     //   ...this.state.persons
     // })
