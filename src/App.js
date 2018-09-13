@@ -49,20 +49,28 @@ class App extends React.Component {
 
   // increase likes method
   increaseLikes(id) {
-    let uId = id;    
+    let uId = id;
+    // let likes = 0;
     let persons = [...this.state.persons];
-    let users = this.state.persons;
-    let person = _.find(users, function (person) {
+    // let users = this.state.persons;
+    let person = _.find(persons, function (person) {
       if (person.id === uId) {
-        return person;
+        // likes = person.likes + 1;
+        return {
+          ...person
+        };
       }
     });
+    // console.log(person.likes);
+    // console.log(`APP STATE ${JSON.stringify(this.state.persons)}`);
+    // console.log(`PERSON OBJECT ${JSON.stringify(person)}`);
     let newPerson = {
       id: person.id,
       name: person.name,
       content: person.content,
-      likes: person.likes+1
+      likes: person.likes++
     };
+    console.log(person.likes);
     persons.push(newPerson);
     persons.pop(person);
     this.setState({ persons: persons });
@@ -71,19 +79,20 @@ class App extends React.Component {
 
   // decrease likes method
   decreaseLikes(id) {
-    let uId = id;    
+    let uId = id;
     let persons = [...this.state.persons];
-    let users = this.state.persons;
-    let person = _.find(users, function (person) {
+    let person = _.find(persons, function (person) {
       if (person.id === uId) {
         return person;
       }
     });
+    let likes = person.likes - 1;
+    console.log(likes);
     let newPerson = {
       id: person.id,
       name: person.name,
       content: person.content,
-      likes: (person.likes > 0 ? person.likes-1 : person.likes)
+      likes: (person.likes > 0 ? (person.likes + 1) : person.likes)
     };
     persons.push(newPerson);
     persons.pop(person);
@@ -92,27 +101,37 @@ class App extends React.Component {
   }
 
   // to get json data 
-  componentDidMount() {
+  async componentDidMount() {
     const ax = axios.create({
       baseURL: 'http://127.0.0.1:4000/'
     });
-    ax.get('http://127.0.0.1:4000/')
-      .then((res) => {
+    await ax.get('http://127.0.0.1:4000/')
+      .then(res => {
         console.log(res.data);
         const persons = res.data;
         this.setState({
           persons: persons
         });
-      },(err)=>{
+      }, err => {
         console.log(err);
-      });    
-    // axios({
-    //   method: 'post',
-    //   url: 'http://127.0.0.1:4000/',
-    //   data: this.state.persons,
-    //   header: {
-    //     'Accept': 'application/json'        
-    //   },
+      });
+    axios({
+      method: 'post',
+      url: 'http://127.0.0.1:4000/',
+      data: this.state.persons,
+      header: {
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
+    });
+    // axios.post('http://127.0.0.1:4000/', {
+    //   ...this.state.persons
+    // })
+    // .then(function (response) {
+    //   console.log(response);
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
     // });
   }
 
