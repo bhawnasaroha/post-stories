@@ -93,11 +93,11 @@ class App extends React.Component {
   }
 
   // to get json data 
-  async componentDidMount() {
+  componentDidMount() {
     const ax = axios.create({
       baseURL: 'http://127.0.0.1:4000/'
     });
-    await ax.get('http://127.0.0.1:4000/')
+    ax.get('http://127.0.0.1:4000/')
       .then(res => {
         console.log(res.data);
         const persons = res.data;
